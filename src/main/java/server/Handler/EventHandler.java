@@ -22,12 +22,26 @@ public class EventHandler extends  SimpleChannelHandler
     {
         try
         {
-            System.out.println("client send msg");
             ChannelBuffer buf = (ChannelBuffer) e.getMessage();
-            //long now = System.currentTimeMillis();
 
+            TBase message = EncodeMsg(buf);
+        }
+        catch(Exception exp)
+        {
+            System.out.println("message error");
+        }
+    }
+
+    private void DecodeMsg(TBase message)
+    {
+        //get message id
+        
+    }
+    private TBase EncodeMsg(ChannelBuffer buf)
+    {
+        try
+        {
             int index = 0;
-
             int messageId = buf.getInt(index);
             index += 4;
 
@@ -45,6 +59,7 @@ public class EventHandler extends  SimpleChannelHandler
 
             //read message body length
             int msgBodyLength = buf.getInt(index);
+            index += 4;
 
             //read message body
             byte[] msgBody = new byte[msgBodyLength];
@@ -57,11 +72,13 @@ public class EventHandler extends  SimpleChannelHandler
             System.out.println("message id : " + messageId);
             System.out.println("message header length : " + headerLen);
             System.out.println("message body length : " + msgBodyLength);
+
+            return message;
         }
         catch(Exception exp)
         {
             System.out.println("message error");
+            return null;
         }
-
     }
 }
