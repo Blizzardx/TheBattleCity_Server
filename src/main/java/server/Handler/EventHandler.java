@@ -2,10 +2,13 @@ package server.Handler;
 
 import org.apache.thrift.TBase;
 import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBufferFactory;
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
+
+import java.nio.ByteBuffer;
 
 /**
  * Created by Administrator on 2016/3/8.
@@ -31,11 +34,46 @@ public class EventHandler extends  SimpleChannelHandler
             System.out.println("message error");
         }
     }
-
-    private void DecodeMsg(TBase message)
+    private int DecodeMsg(byte[] bytes,TBase message)
     {
+        if(null == bytes || bytes.length == 0)
+        {
+            return 0;
+        }
+        // Wrap a byte array into a buffer
+        ByteBuffer buf = ByteBuffer.wrap(bytes);
+
+        int index = 0;
         //get message id
-        
+        int messageId = ThriftHelper.GetInstance().GetIdbyMessage(message);
+        if(messageId == -1)
+        {
+            return 0;
+        }
+        buf.putInt(index,messageId);
+        index += 4;
+
+        //get pre fix
+        index += 4;
+
+        //get header length default = 0
+        short headerLength = 0;
+        buf.putShort(index,headerLength);
+        index += 2;
+
+        //get header body default = 0
+        index += headerLength;
+
+        byte[] msgBody = ThriftSerialize.serialize(message);
+        //get msg length
+        buf.putInt(index,msgBody.length);
+        index += 4;
+
+        //get msg body
+        buf.put(msgBody,index,msgBody.length);
+        index += msgBody.length;
+
+        return index;
     }
     private TBase EncodeMsg(ChannelBuffer buf)
     {
@@ -69,9 +107,7 @@ public class EventHandler extends  SimpleChannelHandler
             TBase message = ThriftHelper.GetInstance().GetMessageById(messageId);
             ThriftSerialize.deSerialize(message,msgBody);
 
-            System.out.println("message id : " + messageId);
-            System.out.println("message header length : " + headerLen);
-            System.out.println("message body length : " + msgBodyLength);
+            System.out.println("rec message body : " + message.toString());
 
             return message;
         }
