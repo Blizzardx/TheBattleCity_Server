@@ -34,12 +34,15 @@ public class EventHandler extends  SimpleChannelHandler
             System.out.println("message error");
         }
     }
-    private int DecodeMsg(byte[] bytes,TBase message)
+    private byte[] DecodeMsg(TBase message)
     {
-        if(null == bytes || bytes.length == 0)
-        {
-            return 0;
-        }
+        byte[] msgBody = ThriftSerialize.serialize(message);
+
+        short headerLength = 0;
+
+        byte[] bytes = new byte[4+4+2+headerLength+4+msgBody.length];
+
+
         // Wrap a byte array into a buffer
         ByteBuffer buf = ByteBuffer.wrap(bytes);
 
@@ -48,7 +51,7 @@ public class EventHandler extends  SimpleChannelHandler
         int messageId = ThriftHelper.GetInstance().GetIdbyMessage(message);
         if(messageId == -1)
         {
-            return 0;
+            return null;
         }
         buf.putInt(index,messageId);
         index += 4;
@@ -57,23 +60,21 @@ public class EventHandler extends  SimpleChannelHandler
         index += 4;
 
         //get header length default = 0
-        short headerLength = 0;
         buf.putShort(index,headerLength);
         index += 2;
 
         //get header body default = 0
         index += headerLength;
 
-        byte[] msgBody = ThriftSerialize.serialize(message);
         //get msg length
         buf.putInt(index,msgBody.length);
         index += 4;
 
         //get msg body
-        buf.put(msgBody,index,msgBody.length);
+        buf.put(msgBody,0,msgBody.length);
         index += msgBody.length;
 
-        return index;
+        return bytes;
     }
     private TBase EncodeMsg(ChannelBuffer buf)
     {
