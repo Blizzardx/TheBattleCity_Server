@@ -3,22 +3,36 @@ package server.Handler;
 import org.apache.thrift.TBase;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBufferFactory;
-import org.jboss.netty.channel.ChannelHandlerContext;
-import org.jboss.netty.channel.ChannelStateEvent;
-import org.jboss.netty.channel.MessageEvent;
-import org.jboss.netty.channel.SimpleChannelHandler;
+import org.jboss.netty.channel.*;
 
 import java.nio.ByteBuffer;
+import java.util.Vector;
 
 /**
  * Created by Administrator on 2016/3/8.
  */
 public class EventHandler extends  SimpleChannelHandler
 {
+    private Vector<Channel> m_ClientList = new Vector<Channel>();
+
     @Override
     public void channelConnected(ChannelHandlerContext ctx, ChannelStateEvent e)
     {
-        System.out.println("client connected");
+        boolean needAdd = true;
+        Channel incoming = ctx.getChannel();
+        for (Channel channel : m_ClientList)
+        {
+            if(channel.getRemoteAddress() == incoming.getRemoteAddress())
+            {
+                needAdd = false;
+                break;
+            }
+        }
+        if(needAdd)
+        {
+            m_ClientList.add(incoming);
+        }
+        System.out.println("client connected " + incoming.getRemoteAddress());
     }
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e)
@@ -28,6 +42,13 @@ public class EventHandler extends  SimpleChannelHandler
             ChannelBuffer buf = (ChannelBuffer) e.getMessage();
 
             TBase message = EncodeMsg(buf);
+
+            //test code
+           //byte[] writeBuf = DecodeMsg(message);
+            //for (Channel channel : m_ClientList)
+            //{
+            //    channel.write(buf);
+            //}
         }
         catch(Exception exp)
         {
