@@ -133,8 +133,11 @@ public class EventHandler extends  SimpleChannelHandler
         index += 4;
 
         //get msg body
-        buf.put(msgBody,0,msgBody.length);
-        index += msgBody.length;
+        for(int i=0;i<msgBody.length;++i)
+        {
+            buf.put(index,msgBody[i]);
+            ++ index;
+        }
 
         return bytes;
     }
