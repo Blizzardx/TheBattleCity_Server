@@ -3,6 +3,7 @@ import org.jboss.netty.bootstrap.ServerBootstrap;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.*;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
+import server.Moudle.MoudleHandler;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
@@ -15,6 +16,9 @@ public class main
 {
     public static void main(String args[])
     {
+        //register message
+        MoudleHandler.GetInstance().RegisterEvent();
+
         // Server服务启动器
         ServerBootstrap bootstrap = new ServerBootstrap(
                 new NioServerSocketChannelFactory(
@@ -26,7 +30,7 @@ public class main
                 //@Override
                 public ChannelPipeline getPipeline() throws Exception
                 {
-                    return Channels.pipeline(new server.Handler.EventHandler());
+                    return Channels.pipeline(server.Handler.EventHandler.GetInstance());
                 }
          });
 

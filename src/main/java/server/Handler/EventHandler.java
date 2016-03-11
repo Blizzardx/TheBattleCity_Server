@@ -3,9 +3,15 @@ package server.Handler;
 import org.apache.thrift.TBase;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.buffer.ChannelBufferFactory;
+import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.*;
+import server.Message.MessageDispatcher;
+import server.Message.MessageObject;
 
 import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 
 /**
@@ -13,25 +19,61 @@ import java.util.Vector;
  */
 public class EventHandler extends  SimpleChannelHandler
 {
-    private Vector<Channel> m_ClientList = new Vector<Channel>();
+    private static EventHandler m_Instance;
+    public static EventHandler GetInstance()
+    {
+        if(null == m_Instance)
+        {
+            m_Instance = new EventHandler();
+        }
+        return m_Instance;
+    }
+    private EventHandler()
+    {
+        m_ClientList = new HashMap();
+    }
+    private HashMap m_ClientList;
+    public void SendMessageToClient(int clientId,TBase MessageBody)
+    {
+        if(m_ClientList.containsKey(clientId))
+        {
+            Channel incoming = (Channel)(m_ClientList.get(clientId));
+            byte[] msgBody = EncodeMsg(MessageBody);
+            ChannelBuffer buffer = ChannelBuffers.buffer(msgBody.length);
+            buffer.clear();
+            buffer.writeBytes(msgBody);
+            incoming.write(buffer);
+            System.out.println("send msg to cilent " + MessageBody.toString() + " client id " + incoming.getRemoteAddress());
+        }
+    }
+    public void BoradCastMessageToClient(TBase MessageBody)
+    {
+        if(m_ClientList.isEmpty())
+        {
+            return;
+        }
 
+        byte[] msgBody = EncodeMsg(MessageBody);
+        ChannelBuffer buffer = ChannelBuffers.buffer(msgBody.length);
+        buffer.clear();
+        buffer.writeBytes(msgBody);
+
+        Iterator iter = m_ClientList.entrySet().iterator();
+        while (iter.hasNext())
+        {
+            Map.Entry entry = (Map.Entry) iter.next();
+            Object key = entry.getKey();
+            Channel val = (Channel)(entry.getValue());
+            val.write(buffer);
+        }
+    }
     @Override
     public void channelConnected(ChannelHandlerContext ctx, ChannelStateEvent e)
     {
-        boolean needAdd = true;
         Channel incoming = ctx.getChannel();
-        for (Channel channel : m_ClientList)
-        {
-            if(channel.getRemoteAddress() == incoming.getRemoteAddress())
-            {
-                needAdd = false;
-                break;
-            }
-        }
-        if(needAdd)
-        {
-            m_ClientList.add(incoming);
-        }
+
+        m_ClientList.put(incoming.getId(),incoming);
+
         System.out.println("client connected " + incoming.getRemoteAddress());
     }
     @Override
@@ -39,23 +81,21 @@ public class EventHandler extends  SimpleChannelHandler
     {
         try
         {
+            Channel incoming = ctx.getChannel();
             ChannelBuffer buf = (ChannelBuffer) e.getMessage();
 
-            TBase message = EncodeMsg(buf);
+            MessageObject message = DecodeMsg(buf);
+            message.m_iClientId = incoming.getId();
 
-            //test code
-           //byte[] writeBuf = DecodeMsg(message);
-            //for (Channel channel : m_ClientList)
-            //{
-            //    channel.write(buf);
-            //}
+            //broad cast message
+            MessageDispatcher.GetInstance().BroadCastMessage(message);
         }
         catch(Exception exp)
         {
             System.out.println("message error");
         }
     }
-    private byte[] DecodeMsg(TBase message)
+    private byte[] EncodeMsg(TBase message)
     {
         byte[] msgBody = ThriftSerialize.serialize(message);
 
@@ -97,7 +137,7 @@ public class EventHandler extends  SimpleChannelHandler
 
         return bytes;
     }
-    private TBase EncodeMsg(ChannelBuffer buf)
+    private MessageObject DecodeMsg(ChannelBuffer buf)
     {
         try
         {
@@ -131,7 +171,7 @@ public class EventHandler extends  SimpleChannelHandler
 
             System.out.println("rec message body : " + message.toString());
 
-            return message;
+            return new MessageObject(messageId,message,0);
         }
         catch(Exception exp)
         {

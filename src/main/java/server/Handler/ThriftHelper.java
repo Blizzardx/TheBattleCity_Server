@@ -66,4 +66,12 @@ public class ThriftHelper
         Integer id = (Integer)(REQ_MSG_ID.get(key));
         return id;
     }
+    public boolean IsSupportMessage(int messageId)
+    {
+        if (!REQ_ID_MSG.containsKey(messageId))
+        {
+            return false;
+        }
+        return true;
+    }
 }
