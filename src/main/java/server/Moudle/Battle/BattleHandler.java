@@ -13,5 +13,7 @@ public class BattleHandler implements LogicHander
     public void RegisterEvent()
     {
         MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_PING,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_FIRE,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_HANDLER,m_CallBack);
     }
 }

@@ -7,7 +7,7 @@ import server.Moudle.Battle.BattleHandler;
  */
 public class MoudleHandler
 {
-    BattleHandler tmpHandler = new BattleHandler();
+    BattleHandler m_BattleHandler = new BattleHandler();
     private static MoudleHandler m_Instance;
     public static MoudleHandler GetInstance()
     {
@@ -23,6 +23,6 @@ public class MoudleHandler
     }
     public void RegisterEvent()
     {
-        tmpHandler.RegisterEvent();
+        m_BattleHandler.RegisterEvent();
     }
 }

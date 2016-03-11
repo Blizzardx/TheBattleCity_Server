@@ -1,10 +1,7 @@
 package server.Handler;
 
 import org.apache.thrift.TBase;
-import server.msg.auto.CSHandler;
-import server.msg.auto.CSPingMsg;
-import server.msg.auto.CSPongMsg;
-import server.msg.auto.MessageIdConstants;
+import server.msg.auto.*;
 
 import java.util.Dictionary;
 import java.util.HashMap;
@@ -27,8 +24,11 @@ public class ThriftHelper
     private  ThriftHelper()
     {
         REQ_ID_MSG.put(MessageIdConstants.CS_PING, new CSPingMsg().getClass());
-        REQ_ID_MSG.put(MessageIdConstants.CS_PONG, new CSPongMsg().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_PONG, new SCPongMsg().getClass());
         REQ_ID_MSG.put(MessageIdConstants.CS_HANDLER, new CSHandler().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_HANDLER, new SCHandler().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.CS_FIRE, new CSFire().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_FIRE, new SCFire().getClass());
 
         Iterator iter = REQ_ID_MSG.entrySet().iterator();
         while (iter.hasNext())

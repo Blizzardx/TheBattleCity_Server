@@ -65,6 +65,7 @@ public class EventHandler extends  SimpleChannelHandler
             Object key = entry.getKey();
             Channel val = (Channel)(entry.getValue());
             val.write(buffer);
+            System.out.println("send msg to cilent " + MessageBody.toString() + " client id " + val.getRemoteAddress());
         }
     }
     @Override
