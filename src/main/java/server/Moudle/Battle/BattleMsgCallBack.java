@@ -46,6 +46,7 @@ public class BattleMsgCallBack implements MessageCallBack
         server.playerUid = client.playerUid;
         server.currentPosition = client.currentPosition;
         server.fireDirection = client.fireDirection;
+        server.bulletName = client.bulletName;
         EventHandler.GetInstance().BoradCastMessageToClient(server);
     }
 }

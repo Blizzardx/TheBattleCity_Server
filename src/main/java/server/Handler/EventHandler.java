@@ -96,6 +96,30 @@ public class EventHandler extends  SimpleChannelHandler
             System.out.println("message error");
         }
     }
+    @Override
+    public void channelDisconnected(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception
+    {
+        Channel incoming = ctx.getChannel();
+
+        if(m_ClientList.containsKey(incoming.getId()))
+        {
+            // do remove
+            m_ClientList.remove(incoming.getId());
+        }
+        System.out.println("channelDisconnected " + " client id " + incoming.getRemoteAddress());
+    }
+    @Override
+    public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e) throws Exception
+    {
+        Channel incoming = ctx.getChannel();
+
+        if(m_ClientList.containsKey(incoming.getId()))
+        {
+            // do remove
+            m_ClientList.remove(incoming.getId());
+        }
+        System.out.println("channelClosed " + " client id " + incoming.getRemoteAddress());
+    }
     private byte[] EncodeMsg(TBase message)
     {
         byte[] msgBody = ThriftSerialize.serialize(message);
