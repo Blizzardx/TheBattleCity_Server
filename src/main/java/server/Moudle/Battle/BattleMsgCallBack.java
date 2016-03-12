@@ -15,9 +15,6 @@ public class BattleMsgCallBack implements MessageCallBack
     {
         switch(obj.m_iMessageId)
         {
-            case MessageIdConstants.CS_PING:
-                OnPing(obj);
-                break;
             case MessageIdConstants.CS_FIRE:
                 OnFire(obj);
                 break;
@@ -25,10 +22,6 @@ public class BattleMsgCallBack implements MessageCallBack
                 OnHandler(obj);
                 break;
         }
-    }
-    private void OnPing(MessageObject obj)
-    {
-        EventHandler.GetInstance().SendMessageToClient(obj.m_iClientId,new SCPongMsg());
     }
     private void OnHandler(MessageObject obj)
     {

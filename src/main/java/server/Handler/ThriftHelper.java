@@ -29,6 +29,19 @@ public class ThriftHelper
         REQ_ID_MSG.put(MessageIdConstants.SC_HANDLER, new SCHandler().getClass());
         REQ_ID_MSG.put(MessageIdConstants.CS_FIRE, new CSFire().getClass());
         REQ_ID_MSG.put(MessageIdConstants.SC_FIRE, new SCFire().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.CS_RoomList, new CSRoomList().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_RoomList, new SCRoomList().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.CS_SearchRoom, new CSSearchRoom().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_SearchRoom, new SCSearchRoom().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.CS_CreateRoom, new CSCreateRoom().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_CreateRoom, new SCCreateRoom().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.CS_EnterRoom, new CSEnterRoom().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_EnterRoom, new SCEnterRoom().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_SyncPlayerInfo, new SCSyncPlayerInfo().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.CS_Ready, new CSReady().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_Ready, new SCReady().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_BattleBegin, new SCBattleBegin().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_BattleEnd, new SCBattleEnd().getClass());
 
         Iterator iter = REQ_ID_MSG.entrySet().iterator();
         while (iter.hasNext())
