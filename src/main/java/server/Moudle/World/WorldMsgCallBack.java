@@ -1,10 +1,8 @@
 package server.Moudle.World;
 
-import server.Handler.EventHandler;
 import server.Message.MessageCallBack;
 import server.Message.MessageObject;
 import server.msg.auto.MessageIdConstants;
-import server.msg.auto.SCPongMsg;
 
 /**
  * Created by Administrator on 2016/3/12.
@@ -30,8 +28,8 @@ public class WorldMsgCallBack implements MessageCallBack
             case MessageIdConstants.CS_EnterRoom:
                 WorldLogic.GetInstance().OnEnterRoom(obj);
                 break;
-            case MessageIdConstants.CS_Ready:
-                WorldLogic.GetInstance().OnReady(obj);
+            case MessageIdConstants.CS_BattleLoadEnd:
+                WorldLogic.GetInstance().OnBattleLoadEnd(obj);
                 break;
             case MessageIdConstants.CS_FIRE:
                 WorldLogic.GetInstance().OnFire(obj);

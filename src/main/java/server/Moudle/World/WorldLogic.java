@@ -126,29 +126,70 @@ public class WorldLogic
     }
     public void OnEnterRoom(MessageObject obj)
     {
+        CSEnterRoom client = (CSEnterRoom)(obj.m_MessageBody);
+        if(null == client )
+        {
+            // do noting
+            return;
+        }
 
+        SCEnterRoom server = new SCEnterRoom();
+
+        //get room
+        if(!m_ClientRoomMap.containsKey(client.roomName))
+        {
+            server.isSucceed = false;
+            server.errorInfo = "no exit room";
+
+            //return result
+            EventHandler.GetInstance().SendMessageToClient(obj.m_iClientId,server);
+            return;
+        }
+
+        RoomLogic room = m_ClientRoomMap.get(client.roomName);
+        PlayerInfo player = room.GenPlayer(client.playerName);
+        server.playerUid = player.uid;
+
+        //return result
+        EventHandler.GetInstance().SendMessageToClient(obj.m_iClientId,server);
+
+        //sync player info to other client
+        room.AddPlayer(obj.m_iClientId,player);
     }
-    public void OnReady(MessageObject obj)
+    public void OnBattleLoadEnd(MessageObject obj)
     {
+        CSBattleLoadEnd client = (CSBattleLoadEnd)(obj.m_MessageBody);
+        if(null == client )
+        {
+            // do noting
+            return;
+        }
 
+        //find room by client id
+        if(m_RoomMap.containsKey(obj.m_iClientId))
+        {
+            RoomLogic room = m_RoomMap.get(obj.m_iClientId);
+            room.OnBattleLoadEnd(obj.m_iClientId);
+        }
     }
     public void OnHandler(MessageObject obj)
     {
         CSHandler client = (CSHandler)(obj.m_MessageBody);
-        SCHandler handler = new SCHandler();
-        handler.playerUid = client.playerUid;
-        handler.moveDirection = client.moveDirection;
-        handler.currentPosition = client.currentPosition;
-        EventHandler.GetInstance().BoradCastMessageToClient(handler);
+        //find room by client id
+        if(m_RoomMap.containsKey(obj.m_iClientId))
+        {
+            RoomLogic room = m_RoomMap.get(obj.m_iClientId);
+            room.Handler(client);
+        }
     }
     public void OnFire(MessageObject obj)
     {
         CSFire client = (CSFire)(obj.m_MessageBody);
-        SCFire server = new SCFire();
-        server.playerUid = client.playerUid;
-        server.currentPosition = client.currentPosition;
-        server.fireDirection = client.fireDirection;
-        server.bulletName = client.bulletName;
-        EventHandler.GetInstance().BoradCastMessageToClient(server);
+        //find room by client id
+        if(m_RoomMap.containsKey(obj.m_iClientId))
+        {
+            RoomLogic room = m_RoomMap.get(obj.m_iClientId);
+            room.Fire(client);
+        }
     }
 }

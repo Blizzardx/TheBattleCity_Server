@@ -2,14 +2,9 @@ package server.Moudle.Room;
 
 import org.apache.thrift.TBase;
 import server.Handler.EventHandler;
-import server.msg.auto.PlayerInfo;
-import server.msg.auto.SCBattleBegin;
-import server.msg.auto.SCPongMsg;
-import server.msg.auto.SCSyncPlayerInfo;
+import server.msg.auto.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Administrator on 2016/3/12.
@@ -18,6 +13,7 @@ public class RoomLogic
 {
     private ArrayList<PlayerInfo> m_PlayerInfo = new ArrayList<PlayerInfo>();
     private ArrayList<Integer> m_ClientList = new ArrayList<Integer>();
+    private ArrayList<Integer> m_ReadyClientList = new ArrayList<Integer>();
     private String m_strRoomName;
     private RoomStatus m_RoomStatus;
     private int m_MapPlayerCount;
@@ -56,7 +52,7 @@ public class RoomLogic
         SyncAddPlayer(player);
 
         //check can start battle
-        CheckCanPlay();
+        CheckCanLoadBattle();
     }
     public void RemovePlayer(int clientid,int playerUid)
     {
@@ -121,20 +117,64 @@ public class RoomLogic
     {
         return m_strMapName;
     }
-    private void CheckCanPlay()
+    public void OnBattleLoadEnd(int clientId)
+    {
+        for(int i=0;i<m_ReadyClientList.size();++i)
+        {
+            if(m_ReadyClientList.get(i) == clientId)
+            {
+                return;
+            }
+        }
+        m_ReadyClientList.add(clientId);
+        CheckCanBeginBattle();
+    }
+    public void Handler( CSHandler client)
+    {
+        SCHandler server = new SCHandler();
+        server.playerUid = client.playerUid;
+        server.moveDirection = client.moveDirection;
+        server.currentPosition = client.currentPosition;
+        BoradCastMsgToRoom(server);
+    }
+    public void Fire(CSFire client)
+    {
+        SCFire server = new SCFire();
+        server.playerUid = client.playerUid;
+        server.currentPosition = client.currentPosition;
+        server.fireDirection = client.fireDirection;
+        server.bulletName = client.bulletName;
+        BoradCastMsgToRoom(server);
+    }
+    private void CheckCanLoadBattle()
     {
         if(m_ClientList.size() == m_MapPlayerCount)
         {
             // trigger to begin battle
+            BeginLoadBattle();
+        }
+    }
+    private void CheckCanBeginBattle()
+    {
+        if(m_ReadyClientList.size() == m_MapPlayerCount)
+        {
             BeginBattle();
         }
     }
     private void BeginBattle()
     {
         SCBattleBegin server = new SCBattleBegin();
-        server.cd = 3000;
+        server.cd = 1000;
+
         BoradCastMsgToRoom(server);
         m_RoomStatus = RoomStatus.Battle;
+    }
+    private void BeginLoadBattle()
+    {
+        SCBeginLoadBattle server = new SCBeginLoadBattle();
+
+        BoradCastMsgToRoom(server);
+        m_RoomStatus = RoomStatus.Ready;
     }
     public PlayerInfo GenPlayer(String name)
     {

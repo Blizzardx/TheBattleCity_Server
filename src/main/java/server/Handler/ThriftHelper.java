@@ -38,8 +38,8 @@ public class ThriftHelper
         REQ_ID_MSG.put(MessageIdConstants.CS_EnterRoom, new CSEnterRoom().getClass());
         REQ_ID_MSG.put(MessageIdConstants.SC_EnterRoom, new SCEnterRoom().getClass());
         REQ_ID_MSG.put(MessageIdConstants.SC_SyncPlayerInfo, new SCSyncPlayerInfo().getClass());
-        REQ_ID_MSG.put(MessageIdConstants.CS_Ready, new CSReady().getClass());
-        REQ_ID_MSG.put(MessageIdConstants.SC_Ready, new SCReady().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.CS_BattleLoadEnd, new CSBattleLoadEnd().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_BeginLoadBattle, new SCBeginLoadBattle().getClass());
         REQ_ID_MSG.put(MessageIdConstants.SC_BattleBegin, new SCBattleBegin().getClass());
         REQ_ID_MSG.put(MessageIdConstants.SC_BattleEnd, new SCBattleEnd().getClass());
 
