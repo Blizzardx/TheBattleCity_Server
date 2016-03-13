@@ -109,7 +109,7 @@ public class WorldLogic
 
         // create room
         RoomLogic room = new RoomLogic();
-        room.CreateRoom(client.roomInformation.name,2,client.roomInformation.mapName);
+        room.CreateRoom(client.roomInformation.name,client.roomInformation.roomMemberCount,client.roomInformation.mapName);
         server.isSucceed = true;
         PlayerInfo player = room.GenPlayer(client.playerName);
         server.playerUid = player.uid;
