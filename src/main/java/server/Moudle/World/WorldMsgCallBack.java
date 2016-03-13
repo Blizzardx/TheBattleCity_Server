@@ -16,12 +16,30 @@ public class WorldMsgCallBack implements MessageCallBack
         switch(obj.m_iMessageId)
         {
             case MessageIdConstants.CS_PING:
-                OnPing(obj);
+                WorldLogic.GetInstance().OnPing(obj);
+                break;
+            case MessageIdConstants.CS_RoomList:
+                WorldLogic.GetInstance().OnRoomList(obj);
+                break;
+            case MessageIdConstants.CS_SearchRoom:
+                WorldLogic.GetInstance().OnSearchRoom(obj);
+                break;
+            case MessageIdConstants.CS_CreateRoom:
+                WorldLogic.GetInstance().OnCreateRoom(obj);
+                break;
+            case MessageIdConstants.CS_EnterRoom:
+                WorldLogic.GetInstance().OnEnterRoom(obj);
+                break;
+            case MessageIdConstants.CS_Ready:
+                WorldLogic.GetInstance().OnReady(obj);
+                break;
+            case MessageIdConstants.CS_FIRE:
+                WorldLogic.GetInstance().OnFire(obj);
+            break;
+            case MessageIdConstants.CS_HANDLER:
+                WorldLogic.GetInstance().OnHandler(obj);
                 break;
         }
     }
-    private void OnPing(MessageObject obj)
-    {
-        EventHandler.GetInstance().SendMessageToClient(obj.m_iClientId,new SCPongMsg());
-    }
+
 }

@@ -1,6 +1,5 @@
 package server.Moudle;
 
-import server.Moudle.Battle.BattleHandler;
 import server.Moudle.World.WorldHandler;
 
 /**
@@ -8,7 +7,6 @@ import server.Moudle.World.WorldHandler;
  */
 public class MoudleHandler
 {
-    BattleHandler m_BattleHandler = new BattleHandler();
     WorldHandler m_Workdhandler = new WorldHandler();
 
     private static MoudleHandler m_Instance;
@@ -27,6 +25,5 @@ public class MoudleHandler
     public void RegisterEvent()
     {
         m_Workdhandler.RegisterEvent();
-        m_BattleHandler.RegisterEvent();
     }
 }

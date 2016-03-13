@@ -14,5 +14,12 @@ public class WorldHandler implements LogicHander
     public void RegisterEvent()
     {
         MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_PING,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_CreateRoom,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_RoomList,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_SearchRoom,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_EnterRoom,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_Ready,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_FIRE,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_HANDLER,m_CallBack);
     }
 }

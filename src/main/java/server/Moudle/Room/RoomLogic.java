@@ -21,15 +21,17 @@ public class RoomLogic
     private String m_strRoomName;
     private RoomStatus m_RoomStatus;
     private int m_MapPlayerCount;
+    private String m_strMapName;
 
-    public void CreateRoom(String name,int playerCount)
+    public void CreateRoom(String name,int playerCount,String mapName)
     {
         // init room
         m_strRoomName = name;
         m_RoomStatus = RoomStatus.Wait;
         m_MapPlayerCount = playerCount;
+        m_strMapName = mapName;
     }
-    public void AddPlayer(int clientid, String playerName)
+    public void AddPlayer(int clientid, PlayerInfo player)
     {
         if(m_RoomStatus != RoomStatus.Wait)
         {
@@ -46,15 +48,12 @@ public class RoomLogic
             }
         }
 
-        //gen player
-        PlayerInfo info = GenPlayer(playerName);
-
         //add to store
         m_ClientList.add(clientid);
-        m_PlayerInfo.add(info);
+        m_PlayerInfo.add(player);
 
         //sync add player
-        SyncAddPlayer(info);
+        SyncAddPlayer(player);
 
         //check can start battle
         CheckCanPlay();
@@ -114,6 +113,14 @@ public class RoomLogic
         }
 
     }
+    public String GetRoomName()
+    {
+        return m_strRoomName;
+    }
+    public String GetMapName()
+    {
+        return m_strMapName;
+    }
     private void CheckCanPlay()
     {
         if(m_ClientList.size() == m_MapPlayerCount)
@@ -129,7 +136,7 @@ public class RoomLogic
         BoradCastMsgToRoom(server);
         m_RoomStatus = RoomStatus.Battle;
     }
-    private PlayerInfo GenPlayer(String name)
+    public PlayerInfo GenPlayer(String name)
     {
         PlayerInfo res = new PlayerInfo();
         res.uid = GenUid();
