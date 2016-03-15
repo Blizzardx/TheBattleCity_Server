@@ -3,6 +3,7 @@ package server.Moudle.World;
 import server.Handler.EventHandler;
 import server.Message.MessageObject;
 import server.Moudle.Room.RoomLogic;
+import server.Moudle.Room.RoomStatus;
 import server.msg.auto.*;
 
 import java.util.*;
@@ -54,11 +55,14 @@ public class WorldLogic
             Map.Entry entry = (Map.Entry) iter.next();
             Object key = entry.getKey();
             RoomLogic val = (RoomLogic)(entry.getValue());
-            RoomInfo elem = new RoomInfo();
-            elem.name = val.GetRoomName();
-            elem.mapName = val.GetMapName();
-            server.roomList.add(elem);
-            ++ count;
+            if(val.GetRoomStatus()== RoomStatus.Wait)
+            {
+                RoomInfo elem = new RoomInfo();
+                elem.name = val.GetRoomName();
+                elem.mapName = val.GetMapName();
+                server.roomList.add(elem);
+                ++ count;
+            }
         }
         //return result
         EventHandler.GetInstance().SendMessageToClient(obj.m_iClientId,server);
@@ -97,7 +101,7 @@ public class WorldLogic
         SCCreateRoom server = new SCCreateRoom();
 
         // check name
-        if(m_ClientRoomMap.containsKey(client.roomInformation.name))
+        if(m_RoomMap.containsKey(client.roomInformation.name))
         {
             server.isSucceed = false;
             server.errorInfo = "name content";
@@ -136,7 +140,7 @@ public class WorldLogic
         SCEnterRoom server = new SCEnterRoom();
 
         //get room
-        if(!m_ClientRoomMap.containsKey(client.roomName))
+        if(!m_RoomMap.containsKey(client.roomName))
         {
             server.isSucceed = false;
             server.errorInfo = "no exit room";
@@ -146,10 +150,20 @@ public class WorldLogic
             return;
         }
 
-        RoomLogic room = m_ClientRoomMap.get(client.roomName);
+        RoomLogic room = m_RoomMap.get(client.roomName);
+        //check room is ready
+        if(room.GetRoomStatus() != RoomStatus.Wait)
+        {
+            server.isSucceed = false;
+            server.errorInfo = "room is on battle";
+
+            //return result
+            EventHandler.GetInstance().SendMessageToClient(obj.m_iClientId,server);
+            return;
+        }
         PlayerInfo player = room.GenPlayer(client.playerName);
         server.playerUid = player.uid;
-
+        server.isSucceed = true;
         //return result
         EventHandler.GetInstance().SendMessageToClient(obj.m_iClientId,server);
 
@@ -190,6 +204,23 @@ public class WorldLogic
         {
             RoomLogic room = m_RoomMap.get(obj.m_iClientId);
             room.Fire(client);
+        }
+    }
+
+    public void OnLoseClient(MessageObject obj)
+    {
+        if(m_ClientRoomMap.containsKey(obj.m_iClientId))
+        {
+            RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
+            room.LosePlayer(obj.m_iClientId);
+
+            //check empty
+            if(room.IsEmpty())
+            {
+                // remove room
+                m_RoomMap.remove(room.GetRoomName());
+                m_ClientRoomMap.remove(obj.m_iClientId);
+            }
         }
     }
 }

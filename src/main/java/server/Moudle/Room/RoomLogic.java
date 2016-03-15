@@ -5,6 +5,7 @@ import server.Handler.EventHandler;
 import server.msg.auto.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Administrator on 2016/3/12.
@@ -14,6 +15,7 @@ public class RoomLogic
     private ArrayList<PlayerInfo> m_PlayerInfo = new ArrayList<PlayerInfo>();
     private ArrayList<Integer> m_ClientList = new ArrayList<Integer>();
     private ArrayList<Integer> m_ReadyClientList = new ArrayList<Integer>();
+    private HashMap<Integer,Integer> m_PlayerClientIdToUid = new HashMap<Integer, Integer>();
     private String m_strRoomName;
     private RoomStatus m_RoomStatus;
     private int m_MapPlayerCount;
@@ -48,14 +50,21 @@ public class RoomLogic
         m_ClientList.add(clientid);
         m_PlayerInfo.add(player);
 
+        m_PlayerClientIdToUid.put(clientid,player.uid);
+
         //sync add player
         SyncAddPlayer(player);
 
         //check can start battle
         CheckCanLoadBattle();
     }
-    public void RemovePlayer(int clientid,int playerUid)
+    public void RemovePlayer(int clientid)
     {
+        if(!m_PlayerClientIdToUid.containsKey(clientid))
+        {
+            return;
+        }
+        int playerUid = m_PlayerClientIdToUid.get(clientid);
         if(m_RoomStatus != RoomStatus.Wait)
         {
             return;
@@ -90,11 +99,11 @@ public class RoomLogic
         }
 
     }
-    public void LosePlayer(int clientid,int playerUid)
+    public void LosePlayer(int clientid)
     {
         if(m_RoomStatus == RoomStatus.Wait)
         {
-            RemovePlayer(clientid,playerUid);
+            RemovePlayer(clientid);
             return;
         }
 
@@ -145,6 +154,14 @@ public class RoomLogic
         server.fireDirection = client.fireDirection;
         server.bulletName = client.bulletName;
         BoradCastMsgToRoom(server);
+    }
+    public RoomStatus GetRoomStatus()
+    {
+        return m_RoomStatus;
+    }
+    public boolean IsEmpty()
+    {
+        return m_PlayerInfo.size() == 0;
     }
     private void CheckCanLoadBattle()
     {
@@ -241,9 +258,12 @@ public class RoomLogic
     }
     private void SyncAddPlayer(PlayerInfo player)
     {
-        SCSyncPlayerInfo server = new SCSyncPlayerInfo();
-        server.playerInfomation = player;
-        BoradCastMsgToRoom(server);
+        for(int i=0;i<m_PlayerInfo.size();++i)
+        {
+            SCSyncPlayerInfo server = new SCSyncPlayerInfo();
+            server.playerInfomation = m_PlayerInfo.get(i);
+            BoradCastMsgToRoom(server);
+        }
     }
     private void SyncRemovePlayer(int playerUid)
     {

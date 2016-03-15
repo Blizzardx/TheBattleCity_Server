@@ -1,5 +1,6 @@
 package server.Moudle.World;
 
+import server.Handler.CustomServerMessageId;
 import server.Message.MessageCallBack;
 import server.Message.MessageObject;
 import server.msg.auto.MessageIdConstants;
@@ -36,6 +37,9 @@ public class WorldMsgCallBack implements MessageCallBack
             break;
             case MessageIdConstants.CS_HANDLER:
                 WorldLogic.GetInstance().OnHandler(obj);
+                break;
+            case CustomServerMessageId.S_LOSE_CLIENT:
+                WorldLogic.GetInstance().OnLoseClient(obj);
                 break;
         }
     }

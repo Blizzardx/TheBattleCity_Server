@@ -1,5 +1,6 @@
 package server.Moudle.World;
 
+import server.Handler.CustomServerMessageId;
 import server.Message.MessageDispatcher;
 import server.Moudle.LogicHander;
 import server.msg.auto.MessageIdConstants;
@@ -21,5 +22,6 @@ public class WorldHandler implements LogicHander
         MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_BattleLoadEnd,m_CallBack);
         MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_FIRE,m_CallBack);
         MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_HANDLER,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(CustomServerMessageId.S_LOSE_CLIENT,m_CallBack);
     }
 }

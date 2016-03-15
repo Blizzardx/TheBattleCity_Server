@@ -1,6 +1,7 @@
 package server.Message;
 
 import org.apache.thrift.TBase;
+import server.Handler.CustomServerMessageId;
 import server.Handler.EventHandler;
 import server.Handler.ThriftHelper;
 
@@ -49,7 +50,7 @@ public class MessageDispatcher
     public void RegisterMessage(int messageId,MessageCallBack callBack)
     {
         //check message id
-        if(!ThriftHelper.GetInstance().IsSupportMessage(messageId))
+        if(!ThriftHelper.GetInstance().IsSupportMessage(messageId) && !CustomServerMessageId.IsSupportMessage(messageId))
         {
             System.out.println("Can't supprot message id " + messageId);
             return;

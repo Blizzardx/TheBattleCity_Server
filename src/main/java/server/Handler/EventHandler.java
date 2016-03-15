@@ -9,10 +9,7 @@ import server.Message.MessageDispatcher;
 import server.Message.MessageObject;
 
 import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * Created by Administrator on 2016/3/8.
@@ -105,6 +102,13 @@ public class EventHandler extends  SimpleChannelHandler
         {
             // do remove
             m_ClientList.remove(incoming.getId());
+
+            //send msg to server
+            MessageObject message = new MessageObject();
+            message.m_iClientId = incoming.getId();
+            message.m_iMessageId = CustomServerMessageId.S_LOSE_CLIENT;
+            //broad cast message
+            MessageDispatcher.GetInstance().BroadCastMessage(message);
         }
         System.out.println("channelDisconnected " + " client id " + incoming.getRemoteAddress());
     }
@@ -117,6 +121,14 @@ public class EventHandler extends  SimpleChannelHandler
         {
             // do remove
             m_ClientList.remove(incoming.getId());
+
+            //send msg to server
+            MessageObject message = new MessageObject();
+            message.m_iClientId = incoming.getId();
+            message.m_iMessageId = CustomServerMessageId.S_LOSE_CLIENT;
+
+            //broad cast message
+            MessageDispatcher.GetInstance().BroadCastMessage(message);
         }
         System.out.println("channelClosed " + " client id " + incoming.getRemoteAddress());
     }
