@@ -164,6 +164,11 @@ public class WorldLogic
         PlayerInfo player = room.GenPlayer(client.playerName);
         server.playerUid = player.uid;
         server.isSucceed = true;
+
+        //add to store
+        m_RoomMap.put(room.GetRoomName(),room);
+        m_ClientRoomMap.put(obj.m_iClientId,room);
+
         //return result
         EventHandler.GetInstance().SendMessageToClient(obj.m_iClientId,server);
 
@@ -190,9 +195,9 @@ public class WorldLogic
     {
         CSHandler client = (CSHandler)(obj.m_MessageBody);
         //find room by client id
-        if(m_RoomMap.containsKey(obj.m_iClientId))
+        if(m_ClientRoomMap.containsKey(obj.m_iClientId))
         {
-            RoomLogic room = m_RoomMap.get(obj.m_iClientId);
+            RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
             room.Handler(client);
         }
     }
@@ -200,9 +205,9 @@ public class WorldLogic
     {
         CSFire client = (CSFire)(obj.m_MessageBody);
         //find room by client id
-        if(m_RoomMap.containsKey(obj.m_iClientId))
+        if(m_ClientRoomMap.containsKey(obj.m_iClientId))
         {
-            RoomLogic room = m_RoomMap.get(obj.m_iClientId);
+            RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
             room.Fire(client);
         }
     }
