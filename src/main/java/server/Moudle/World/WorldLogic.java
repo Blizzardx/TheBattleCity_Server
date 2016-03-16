@@ -185,9 +185,9 @@ public class WorldLogic
         }
 
         //find room by client id
-        if(m_RoomMap.containsKey(obj.m_iClientId))
+        if(m_ClientRoomMap.containsKey(obj.m_iClientId))
         {
-            RoomLogic room = m_RoomMap.get(obj.m_iClientId);
+            RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
             room.OnBattleLoadEnd(obj.m_iClientId);
         }
     }
@@ -227,5 +227,35 @@ public class WorldLogic
                 m_ClientRoomMap.remove(obj.m_iClientId);
             }
         }
+    }
+    public void OnHurt(MessageObject obj)
+    {
+        CSHurt client = (CSHurt)(obj.m_MessageBody);
+        //find room by client id
+        if(m_ClientRoomMap.containsKey(obj.m_iClientId))
+        {
+            RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
+            room.Hurt(client);
+        }
+    }
+    public void OnBattleEnd(MessageObject obj)
+    {
+        CSBattleEnd client = (CSBattleEnd)(obj.m_MessageBody);
+        //find room by client id
+        if(m_ClientRoomMap.containsKey(obj.m_iClientId))
+        {
+            RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
+            room.BattleEnd(client);
+            ClearRoom(room);
+        }
+    }
+    private void ClearRoom(RoomLogic room)
+    {
+        ArrayList<Integer> clientList = room.GetClientIdList();
+        for(int i=0;i<clientList.size();++i)
+        {
+            m_ClientRoomMap.remove(clientList.get(i));
+        }
+        m_RoomMap.remove(room.GetRoomName());
     }
 }

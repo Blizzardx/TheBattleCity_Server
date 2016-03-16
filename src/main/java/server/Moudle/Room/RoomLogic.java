@@ -6,6 +6,8 @@ import server.msg.auto.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/3/12.
@@ -21,6 +23,10 @@ public class RoomLogic
     private int m_MapPlayerCount;
     private String m_strMapName;
 
+    public ArrayList<Integer> GetClientIdList()
+    {
+        return m_ClientList;
+    }
     public void CreateRoom(String name,int playerCount,String mapName)
     {
         // init room
@@ -155,6 +161,13 @@ public class RoomLogic
         server.bulletName = client.bulletName;
         BoradCastMsgToRoom(server);
     }
+    public void Hurt(CSHurt client)
+    {
+        SCHurt server = new SCHurt();
+        server.playerUid = client.playerUid;
+        server.hurtValue = client.hurtValue;
+        BoradCastMsgToRoom(server);
+    }
     public RoomStatus GetRoomStatus()
     {
         return m_RoomStatus;
@@ -254,7 +267,6 @@ public class RoomLogic
         {
             EventHandler.GetInstance().SendMessageToClient(m_ClientList.get(i),msg);
         }
-
     }
     private void SyncAddPlayer(PlayerInfo player)
     {
@@ -268,5 +280,33 @@ public class RoomLogic
     private void SyncRemovePlayer(int playerUid)
     {
         // to do
+    }
+    public void BattleEnd(CSBattleEnd client)
+    {
+        if(m_RoomStatus != RoomStatus.Battle)
+        {
+            return;
+        }
+        // to do
+        SCBattleEnd server = new SCBattleEnd();
+
+        Iterator iter = m_PlayerClientIdToUid.entrySet().iterator();
+        while (iter.hasNext())
+        {
+            Map.Entry entry = (Map.Entry) iter.next();
+            Integer key = (Integer)(entry.getKey());
+            Integer val = (Integer)(entry.getValue());
+
+            if(val == client.playerUid)
+            {
+                server.isWin = client.isWin;
+            }
+            else
+            {
+                server.isWin = !client.isWin;
+            }
+            EventHandler.GetInstance().SendMessageToClient(key,server);
+        }
+        m_RoomStatus = RoomStatus.Ready;
     }
 }

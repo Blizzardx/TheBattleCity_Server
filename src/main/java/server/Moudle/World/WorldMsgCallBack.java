@@ -41,6 +41,12 @@ public class WorldMsgCallBack implements MessageCallBack
             case CustomServerMessageId.S_LOSE_CLIENT:
                 WorldLogic.GetInstance().OnLoseClient(obj);
                 break;
+            case MessageIdConstants.CS_Hurt:
+                WorldLogic.GetInstance().OnHurt(obj);
+                break;
+            case MessageIdConstants.CS_BattleEnd:
+                WorldLogic.GetInstance().OnBattleEnd(obj);
+                break;
         }
     }
 
