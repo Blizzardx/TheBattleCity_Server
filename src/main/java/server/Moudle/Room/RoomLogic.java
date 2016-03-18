@@ -221,7 +221,7 @@ public class RoomLogic
         }
         m_RoomStatus = RoomStatus.Ready;
     }
-    public void UseItem(CSUseItem client,int clientId)
+    public void UseItem(CSUseItem client)
     {
         if(null == m_ItemMgr)
         {
@@ -232,7 +232,7 @@ public class RoomLogic
             SCUsedItem server = new SCUsedItem();
             server.itemId = client.itemId;
             server.positionId = client.positionId;
-            server.playerUid = m_PlayerClientIdToUid.get(clientId);
+            server.playerUid = client.playerUid;
             BoradCastMsgToRoom(server);
         }
     }
@@ -240,6 +240,9 @@ public class RoomLogic
     {
         m_ItemMgr = new GenItemManager();
         m_ItemMgr.Initialize(client.genFundamental);
+
+        //sync init item
+        SyncInitItemInfo();
     }
     private void CheckCanLoadBattle()
     {
@@ -263,6 +266,7 @@ public class RoomLogic
 
         BoradCastMsgToRoom(server);
         m_RoomStatus = RoomStatus.Battle;
+
     }
     private void BeginLoadBattle()
     {
@@ -334,6 +338,19 @@ public class RoomLogic
     private void SyncRemovePlayer(int playerUid)
     {
         // to do
+    }
+    private void SyncInitItemInfo()
+    {
+        // random item info
+        ArrayList<ItemInfo> res = m_ItemMgr.GetInitItem();
+        for(int i=0;i<res.size();++i)
+        {
+            ItemInfo elem = res.get(i);
+            SCCreateItem server = new SCCreateItem();
+            server.itemId = elem.m_iItemId;
+            server.positionId = elem.m_iPositionId;
+            BoradCastMsgToRoom(server);
+        }
     }
     private void UpdateRoomInfo()
     {

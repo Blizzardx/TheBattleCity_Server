@@ -275,7 +275,7 @@ public class WorldLogic
         if(m_ClientRoomMap.containsKey(obj.m_iClientId))
         {
             RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
-            room.UseItem(client,obj.m_iClientId);
+            room.UseItem(client);
         }
     }
 }

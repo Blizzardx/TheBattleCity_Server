@@ -1,21 +1,23 @@
 package server.Moudle.Item;
 
+import server.Moudle.Random.CustomRandom;
 import server.msg.auto.ItemGenFundamental;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Administrator on 2016/3/18.
  */
 public class GenItemManager
 {
-    private ItemGenFundamental info;
+    private ItemGenFundamental m_ItemInfo;
     private ArrayList<ItemInfo> m_CurrentItemList;
-    private int m_CurrentTime;
+    private long m_CurrentTime;
     private ArrayList<Integer> m_CurrentUsingPosList;
 
     public void Initialize(ItemGenFundamental info)
     {
-        this.info = info;
+        this.m_ItemInfo = info;
         m_CurrentItemList = new ArrayList<ItemInfo>();
         m_CurrentUsingPosList = new ArrayList<Integer>();
 
@@ -24,14 +26,40 @@ public class GenItemManager
             m_CurrentUsingPosList.add(info.positionId.get(i));
         }
     }
+    public ArrayList<ItemInfo> GetInitItem()
+    {
+        return RandomGenItem(m_ItemInfo.initItemCount);
+    }
     public boolean Update()
     {
-        return false;
+        long time = System.currentTimeMillis();
+        long delatTime =time - m_CurrentTime;
+        if(delatTime < m_ItemInfo.triggerDeltaTime * 1000)
+        {
+            return false;
+        }
+        if(m_CurrentItemList.size() >= m_ItemInfo.maxCount)
+        {
+            return false;
+        }
+
+        //reset time
+        m_CurrentTime = time;
+        return true;
     }
     public ArrayList<ItemInfo> RandomGen()
     {
-        ArrayList<ItemInfo> res = null;
-        return res;
+        int min = m_ItemInfo.genPreTimeItemCountMin;
+        int max = m_ItemInfo.genPreTimeItemCountMax;
+        int tmpMax = m_ItemInfo.maxCount - m_CurrentItemList.size();
+        if(max > tmpMax)
+        {
+            max = tmpMax;
+        }
+
+        int randomCount = CustomRandom.RandomIntInclude(min,max);
+
+        return RandomGenItem(randomCount);
     }
     public boolean TryUseItem(int id,int posId)
     {
@@ -50,6 +78,17 @@ public class GenItemManager
     }
     private void AddUsingPosList(int posId)
     {
+        for (int j = 0; j < m_CurrentUsingPosList.size(); ++j)
+        {
+            if (m_CurrentUsingPosList.get(j) == posId)
+            {
+                return;
+            }
+        }
+        m_CurrentUsingPosList.add(posId);
+    }
+    private void RemoveUsingPosList(int posId)
+    {
         for(int j=0;j<m_CurrentUsingPosList.size();++j)
         {
             if(m_CurrentUsingPosList.get(j) == posId)
@@ -60,15 +99,25 @@ public class GenItemManager
             }
         }
     }
-    private void RemoveUsingPosList(int posId)
+    private ArrayList<ItemInfo> RandomGenItem(int count)
     {
-        for(int j=0;j<m_CurrentUsingPosList.size();++j)
+        ArrayList<ItemInfo> res = new ArrayList<ItemInfo>();
+        for(int i=0;i<count&&m_CurrentUsingPosList.size()>0;++i)
         {
-            if(m_CurrentUsingPosList.get(j) == posId)
-            {
-                return;
-            }
+            ItemInfo item = RandomItem();
+            res.add(item);
+            RemoveUsingPosList(item.m_iPositionId);
+            m_CurrentItemList.add(item);
         }
-        m_CurrentUsingPosList.add(posId);
+        return res;
+    }
+    private ItemInfo RandomItem()
+    {
+        ItemInfo res = new ItemInfo();
+
+        // get random position
+        res.m_iPositionId = m_CurrentUsingPosList.get(CustomRandom.RandomInt(0,m_CurrentUsingPosList.size()));
+        res.m_iItemId = m_ItemInfo.itemList.get(CustomRandom.RandomInt(0,m_ItemInfo.itemList.size()));
+        return res;
     }
 }
