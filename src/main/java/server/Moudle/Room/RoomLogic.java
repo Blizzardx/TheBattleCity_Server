@@ -2,6 +2,8 @@ package server.Moudle.Room;
 
 import org.apache.thrift.TBase;
 import server.Handler.EventHandler;
+import server.Moudle.Item.GenItemManager;
+import server.Moudle.Item.ItemInfo;
 import server.msg.auto.*;
 
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class RoomLogic
     private RoomStatus m_RoomStatus;
     private int m_MapPlayerCount;
     private String m_strMapName;
+    private GenItemManager m_ItemMgr;
 
     public ArrayList<Integer> GetClientIdList()
     {
@@ -151,6 +154,9 @@ public class RoomLogic
         server.moveDirection = client.moveDirection;
         server.currentPosition = client.currentPosition;
         BoradCastMsgToRoom(server);
+
+        //trigger update
+        UpdateRoomInfo();
     }
     public void Fire(CSFire client)
     {
@@ -175,6 +181,65 @@ public class RoomLogic
     public boolean IsEmpty()
     {
         return m_PlayerInfo.size() == 0;
+    }
+    public PlayerInfo GenPlayer(String name)
+    {
+        PlayerInfo res = new PlayerInfo();
+        res.uid = GenUid();
+        res.name = name;
+        res.meshName = "Tank_0";
+        res.positionId = GenPositionId();
+        res.hp = 100;
+
+        return res;
+    }
+    public void BattleEnd(CSBattleEnd client)
+    {
+        if(m_RoomStatus != RoomStatus.Battle)
+        {
+            return;
+        }
+        // to do
+        SCBattleEnd server = new SCBattleEnd();
+
+        Iterator iter = m_PlayerClientIdToUid.entrySet().iterator();
+        while (iter.hasNext())
+        {
+            Map.Entry entry = (Map.Entry) iter.next();
+            Integer key = (Integer)(entry.getKey());
+            Integer val = (Integer)(entry.getValue());
+
+            if(val == client.playerUid)
+            {
+                server.isWin = client.isWin;
+            }
+            else
+            {
+                server.isWin = !client.isWin;
+            }
+            EventHandler.GetInstance().SendMessageToClient(key,server);
+        }
+        m_RoomStatus = RoomStatus.Ready;
+    }
+    public void UseItem(CSUseItem client,int clientId)
+    {
+        if(null == m_ItemMgr)
+        {
+            return;
+        }
+        if(m_ItemMgr.TryUseItem(client.itemId,client.positionId))
+        {
+            SCUsedItem server = new SCUsedItem();
+            server.itemId = client.itemId;
+            server.positionId = client.positionId;
+            server.playerUid = m_PlayerClientIdToUid.get(clientId);
+            BoradCastMsgToRoom(server);
+        }
+    }
+    public void ItemGenFundamental(CSItemGenFundamental client)
+    {
+        m_ItemMgr = new GenItemManager();
+        m_ItemMgr.Initialize(client.genFundamental);
     }
     private void CheckCanLoadBattle()
     {
@@ -205,17 +270,6 @@ public class RoomLogic
 
         BoradCastMsgToRoom(server);
         m_RoomStatus = RoomStatus.Ready;
-    }
-    public PlayerInfo GenPlayer(String name)
-    {
-        PlayerInfo res = new PlayerInfo();
-        res.uid = GenUid();
-        res.name = name;
-        res.meshName = "Tank_0";
-        res.positionId = GenPositionId();
-        res.hp = 100;
-
-        return res;
     }
     private int GenUid()
     {
@@ -281,32 +335,24 @@ public class RoomLogic
     {
         // to do
     }
-    public void BattleEnd(CSBattleEnd client)
+    private void UpdateRoomInfo()
     {
-        if(m_RoomStatus != RoomStatus.Battle)
+        if(null == m_ItemMgr)
         {
             return;
         }
-        // to do
-        SCBattleEnd server = new SCBattleEnd();
-
-        Iterator iter = m_PlayerClientIdToUid.entrySet().iterator();
-        while (iter.hasNext())
+        if(m_ItemMgr.Update())
         {
-            Map.Entry entry = (Map.Entry) iter.next();
-            Integer key = (Integer)(entry.getKey());
-            Integer val = (Integer)(entry.getValue());
-
-            if(val == client.playerUid)
+            // random item info
+            ArrayList<ItemInfo> res = m_ItemMgr.RandomGen();
+            for(int i=0;i<res.size();++i)
             {
-                server.isWin = client.isWin;
+                ItemInfo elem = res.get(i);
+                SCCreateItem server = new SCCreateItem();
+                server.itemId = elem.m_iItemId;
+                server.positionId = elem.m_iPositionId;
+                BoradCastMsgToRoom(server);
             }
-            else
-            {
-                server.isWin = !client.isWin;
-            }
-            EventHandler.GetInstance().SendMessageToClient(key,server);
         }
-        m_RoomStatus = RoomStatus.Ready;
     }
 }

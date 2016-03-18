@@ -258,4 +258,24 @@ public class WorldLogic
         }
         m_RoomMap.remove(room.GetRoomName());
     }
+    public void OnItemGenFundamental(MessageObject obj)
+    {
+        CSItemGenFundamental client = (CSItemGenFundamental)(obj.m_MessageBody);
+        //find room by client id
+        if(m_ClientRoomMap.containsKey(obj.m_iClientId))
+        {
+            RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
+            room.ItemGenFundamental(client);
+        }
+    }
+    public void OnUseItem(MessageObject obj)
+    {
+        CSUseItem client = (CSUseItem)(obj.m_MessageBody);
+        //find room by client id
+        if(m_ClientRoomMap.containsKey(obj.m_iClientId))
+        {
+            RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
+            room.UseItem(client,obj.m_iClientId);
+        }
+    }
 }
