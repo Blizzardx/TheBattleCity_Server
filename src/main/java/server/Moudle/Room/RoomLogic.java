@@ -162,9 +162,7 @@ public class RoomLogic
     {
         SCFire server = new SCFire();
         server.playerUid = client.playerUid;
-        server.currentPosition = client.currentPosition;
-        server.fireDirection = client.fireDirection;
-        server.bulletName = client.bulletName;
+        server.fireInfoList = client.fireInfoList;
         BoradCastMsgToRoom(server);
     }
     public void Hurt(CSHurt client)
@@ -180,7 +178,7 @@ public class RoomLogic
     }
     public boolean IsEmpty()
     {
-        return m_PlayerInfo.size() == 0;
+        return m_ClientList.size() == 0;
     }
     public PlayerInfo GenPlayer(String name)
     {
