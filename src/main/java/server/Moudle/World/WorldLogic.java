@@ -78,9 +78,9 @@ public class WorldLogic
 
         SCSearchRoom server = new SCSearchRoom();
 
-        if(m_ClientRoomMap.containsKey(client.name))
+        if(m_RoomMap.containsKey(client.name))
         {
-            RoomLogic val = m_ClientRoomMap.get(client.name);
+            RoomLogic val = m_RoomMap.get(client.name);
             server.roomInformation = new RoomInfo();
             server.roomInformation.name = val.GetRoomName();
             server.roomInformation.mapName = val.GetMapName();
