@@ -126,6 +126,21 @@ public class RoomLogic
             }
         }
 
+        //test code
+        // to do
+        SCBattleEnd server = new SCBattleEnd();
+        server.isWin = true;
+
+        Iterator iter = m_PlayerClientIdToUid.entrySet().iterator();
+        while (iter.hasNext())
+        {
+            Map.Entry entry = (Map.Entry) iter.next();
+            Integer key = (Integer)(entry.getKey());
+
+            EventHandler.GetInstance().SendMessageToClient(key,server);
+        }
+        m_RoomStatus = RoomStatus.Ready;
+        ClearRoom();
     }
     public String GetRoomName()
     {
@@ -272,6 +287,11 @@ public class RoomLogic
 
         BoradCastMsgToRoom(server);
         m_RoomStatus = RoomStatus.Ready;
+    }
+    private void ClearRoom()
+    {
+        m_PlayerClientIdToUid.clear();
+        m_ClientList.clear();
     }
     private int GenUid()
     {
