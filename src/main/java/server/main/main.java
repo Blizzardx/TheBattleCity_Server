@@ -33,7 +33,7 @@ public class main
                     return Channels.pipeline(server.Handler.EventHandler.GetInstance());
                 }
          });
-
+        bootstrap.setOption("tcpNoDelay",true);
         bootstrap.bind(new InetSocketAddress(8000));
     }
 }
