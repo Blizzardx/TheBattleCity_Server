@@ -26,7 +26,7 @@ public class RoomLogic implements BattleFrameUpdate.Callback
     private int m_MapPlayerCount;
     private String m_strMapName;
     private GenItemManager m_ItemMgr;
-
+    private BattleFrameUpdate m_FrameMgr;
     public ArrayList<Integer> GetClientIdList()
     {
         return m_ClientList;
@@ -38,6 +38,12 @@ public class RoomLogic implements BattleFrameUpdate.Callback
         m_RoomStatus = RoomStatus.Wait;
         m_MapPlayerCount = playerCount;
         m_strMapName = mapName;
+
+        m_FrameMgr = new BattleFrameUpdate();
+        m_FrameMgr.Initialize(this,30,2);
+
+        // test code
+        BeginSendLogicFrame();
     }
     public void AddPlayer(int clientid, PlayerInfo player)
     {
@@ -258,6 +264,10 @@ public class RoomLogic implements BattleFrameUpdate.Callback
         //sync init item
         SyncInitItemInfo();
     }
+    public void OnClientCmd(int clientId,CSBattleLogicFrame msg)
+    {
+        m_FrameMgr.OnClientCmd(m_PlayerClientIdToUid.get(clientId),msg);
+    }
     private void CheckCanLoadBattle()
     {
         if(m_ClientList.size() == m_MapPlayerCount)
@@ -394,10 +404,6 @@ public class RoomLogic implements BattleFrameUpdate.Callback
             }
         }
     }
-    public void OnClientFrame()
-    {
-
-    }
     private void BeginSendLogicFrame()
     {
         // add to tick list
@@ -410,8 +416,8 @@ public class RoomLogic implements BattleFrameUpdate.Callback
     }
     public void Tick()
     {
+        m_FrameMgr.Tick();
     }
-
     public void BroadcastCmd(SCBattleLogicFrame msg)
     {
         BoradCastMsgToRoom(msg);

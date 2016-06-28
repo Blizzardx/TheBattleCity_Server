@@ -279,6 +279,16 @@ public class WorldLogic
             room.UseItem(client);
         }
     }
+    public void OnBattleLogicCmd(MessageObject obj)
+    {
+        CSBattleLogicFrame msg = (CSBattleLogicFrame)(obj.m_MessageBody);
+        //find room by client id
+        if(m_ClientRoomMap.containsKey(obj.m_iClientId))
+        {
+            RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
+            room.OnClientCmd(obj.m_iClientId,msg);
+        }
+    }
     public void RegisterToTicklist(RoomLogic room)
     {
         if(m_RoomTickList.contains(room))

@@ -49,6 +49,8 @@ public class ThriftHelper
         REQ_ID_MSG.put(MessageIdConstants.CS_UseItem, new CSUseItem().getClass());
         REQ_ID_MSG.put(MessageIdConstants.SC_UsedItem, new SCUsedItem().getClass());
         REQ_ID_MSG.put(MessageIdConstants.SC_CreateItem, new SCCreateItem().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.SC_BattleLogicFrame, new SCBattleLogicFrame().getClass());
+        REQ_ID_MSG.put(MessageIdConstants.CS_BattleLogicFrame, new CSBattleLogicFrame().getClass());
 
         Iterator iter = REQ_ID_MSG.entrySet().iterator();
         while (iter.hasNext())

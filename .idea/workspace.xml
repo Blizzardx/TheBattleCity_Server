@@ -2,21 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e72b30f1-0239-43c9-af2d-39a198a44ead" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/artifacts/NettyServer_jar.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Handler/EventHandler.java" afterPath="$PROJECT_DIR$/src/main/java/server/Handler/EventHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Message/MessageDispatcher.java" afterPath="$PROJECT_DIR$/src/main/java/server/Message/MessageDispatcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Moudle/MoudleHandler.java" afterPath="$PROJECT_DIR$/src/main/java/server/Moudle/MoudleHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Handler/ThriftHelper.java" afterPath="$PROJECT_DIR$/src/main/java/server/Handler/ThriftHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Moudle/Room/BattleFrameUpdate.java" afterPath="$PROJECT_DIR$/src/main/java/server/Moudle/Room/BattleFrameUpdate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Moudle/Room/RoomLogic.java" afterPath="$PROJECT_DIR$/src/main/java/server/Moudle/Room/RoomLogic.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldLogic.java" afterPath="$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldLogic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/main/main.java" afterPath="$PROJECT_DIR$/src/main/java/server/main/main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldMsgCallBack.java" afterPath="$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldMsgCallBack.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/server/msg/auto/MessageIdConstants.java" afterPath="$PROJECT_DIR$/src/main/java/server/msg/auto/MessageIdConstants.java" />
     </list>
     <ignored path="1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,60 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/server/main/main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1215#1216#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoudleHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/MoudleHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="711">
-              <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#543#544#0" expanded="true" />
-                <element signature="e#589#590#0" expanded="true" />
-                <element signature="e#619#620#0" expanded="true" />
-                <element signature="e#666#667#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LogicHander.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/LogicHander.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WorldMsgCallBack.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldMsgCallBack.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="10" column="40" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="WorldLogic.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldLogic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="757">
-              <caret line="296" column="22" selection-start-line="296" selection-start-column="22" selection-end-line="296" selection-end-column="22" />
+            <state relative-caret-position="329">
+              <caret line="249" column="28" selection-start-line="249" selection-start-column="28" selection-end-line="249" selection-end-column="28" />
               <folding>
                 <element signature="e#798#809#0" expanded="true" />
               </folding>
@@ -100,19 +43,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RoomLogic.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RoomLogic.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/Room/RoomLogic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+            <state relative-caret-position="174">
+              <caret line="357" column="0" selection-start-line="357" selection-start-column="0" selection-end-line="357" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#520#532#0" expanded="true" />
                 <element signature="e#595#604#0" expanded="true" />
                 <element signature="e#672#681#0" expanded="true" />
+                <element signature="e#757#775#0" expanded="true" />
+                <element signature="method#AddPlayer#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#RemovePlayer#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#LosePlayer#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#OnBattleLoadEnd#0;class#RoomLogic#0" expanded="false" />
                 <element signature="method#Handler#0;class#RoomLogic#0" expanded="false" />
-                <element signature="e#10811#10812#0" expanded="true" />
-                <element signature="e#10850#10851#0" expanded="true" />
+                <element signature="method#Fire#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#Hurt#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#GenPlayer#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#BattleEnd#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#UseItem#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#ItemGenFundamental#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#OnClientCmd#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#CheckCanLoadBattle#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#CheckCanBeginBattle#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#BeginBattle#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#BeginLoadBattle#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#ClearRoom#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#GenUid#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#GenPositionId#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#SyncAddPlayer#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#SyncRemovePlayer#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#SyncInitItemInfo#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#UpdateRoomInfo#0;class#RoomLogic#0" expanded="false" />
+                <element signature="method#EndSendLogicFrame#0;class#RoomLogic#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -121,8 +86,8 @@
       <file leaf-file-name="BattleFrameUpdate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/Room/BattleFrameUpdate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="30" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="30" />
+            <state relative-caret-position="315">
+              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -130,36 +95,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageDispatcher.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/server/Message/MessageDispatcher.java">
+      <file leaf-file-name="WorldMsgCallBack.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldMsgCallBack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-              <folding>
-                <element signature="method#RegisterMessage#0;class#MessageDispatcher#0" expanded="false" />
-                <element signature="method#HandlerRemove#0;class#MessageDispatcher#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="665">
+              <caret line="56" column="50" selection-start-line="56" selection-start-column="50" selection-end-line="56" selection-end-column="50" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageQueue.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/server/Message/MessageQueue.java">
+      <file leaf-file-name="EventHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/server/Handler/EventHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="529">
+              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageObject.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/server/Message/MessageObject.java">
+      <file leaf-file-name="ThriftHelper.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/server/Handler/ThriftHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="437">
+              <caret line="52" column="86" selection-start-line="52" selection-start-column="86" selection-end-line="52" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -185,16 +145,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/server/Handler/ThriftHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/Message/MessageQueue.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/Message/MessageDispatcher.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldMsgCallBack.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/Moudle/MoudleHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldLogic.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/main/main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/server/Moudle/Room/BattleFrameUpdate.java" />
+        <option value="$PROJECT_DIR$/../TheBattleCity_Client/ClientTools/message/gen-java/server/msg/auto/MessageIdConstants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldLogic.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldMsgCallBack.java" />
         <option value="$PROJECT_DIR$/src/main/java/server/Moudle/Room/RoomLogic.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/Moudle/Room/BattleFrameUpdate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/server/Handler/ThriftHelper.java" />
       </list>
     </option>
   </component>
@@ -382,66 +343,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Room" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TheBattleCity_Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Message" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TheBattleCity_Server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -956,37 +857,37 @@
       <workItem from="1462864049067" duration="1224000" />
       <workItem from="1463487892568" duration="4627000" />
       <workItem from="1465698240634" duration="2618000" />
-      <workItem from="1467081209718" duration="7796000" />
+      <workItem from="1467081209718" duration="13328000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17020000" />
+    <option name="totallyTimeSpent" value="22552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40126717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1404435" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25208333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18162619" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38542765" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39915523" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4181626" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1066,9 +967,31 @@
             <element signature="e#520#532#0" expanded="true" />
             <element signature="e#595#604#0" expanded="true" />
             <element signature="e#672#681#0" expanded="true" />
+            <element signature="e#757#775#0" expanded="true" />
+            <element signature="method#AddPlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#RemovePlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#LosePlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#OnBattleLoadEnd#0;class#RoomLogic#0" expanded="false" />
             <element signature="method#Handler#0;class#RoomLogic#0" expanded="false" />
-            <element signature="e#10811#10812#0" expanded="true" />
-            <element signature="e#10850#10851#0" expanded="true" />
+            <element signature="method#Fire#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#Hurt#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#GenPlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#BattleEnd#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#UseItem#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#ItemGenFundamental#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#OnClientCmd#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#CheckCanLoadBattle#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#CheckCanBeginBattle#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#BeginBattle#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#BeginLoadBattle#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#ClearRoom#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#GenUid#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#GenPositionId#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#SyncAddPlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#SyncRemovePlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#SyncInitItemInfo#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#UpdateRoomInfo#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#EndSendLogicFrame#0;class#RoomLogic#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1123,32 +1046,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/msg/auto/MessageIdConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Handler/ThriftHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="50" column="49" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Handler/EventHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="129" column="53" selection-start-line="129" selection-start-column="53" selection-end-line="129" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/Message/MessageDispatcher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
@@ -1170,14 +1067,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Message/MessageObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -1186,34 +1075,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldLogic.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/msg/auto/CSBattleLogicFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="757">
-          <caret line="296" column="22" selection-start-line="296" selection-start-column="22" selection-end-line="296" selection-end-column="22" />
-          <folding>
-            <element signature="e#798#809#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="115">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/main/main.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1215#1216#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="306">
+          <caret line="456" column="19" selection-start-line="456" selection-start-column="19" selection-end-line="456" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/Room/BattleFrameUpdate.java">
+    <entry file="file://$PROJECT_DIR$/../TheBattleCity_Client/ClientTools/message/gen-java/server/msg/auto/MessageIdConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="30" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="481">
+          <caret line="80" column="30" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/msg/auto/MessageIdConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="86" column="27" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/LogicHander.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1231,35 +1129,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/LogicHander.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/main/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        <state relative-caret-position="389">
+          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1215#1216#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Message/MessageObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="249" column="28" selection-start-line="249" selection-start-column="28" selection-end-line="249" selection-end-column="28" />
+          <folding>
+            <element signature="e#798#809#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/World/WorldMsgCallBack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="10" column="40" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="40" />
+        <state relative-caret-position="665">
+          <caret line="56" column="50" selection-start-line="56" selection-start-column="50" selection-end-line="56" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/Room/RoomLogic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="24" column="36" selection-start-line="24" selection-start-column="36" selection-end-line="24" selection-end-column="36" />
+        <state relative-caret-position="174">
+          <caret line="357" column="0" selection-start-line="357" selection-start-column="0" selection-end-line="357" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#520#532#0" expanded="true" />
             <element signature="e#595#604#0" expanded="true" />
             <element signature="e#672#681#0" expanded="true" />
+            <element signature="e#757#775#0" expanded="true" />
+            <element signature="method#AddPlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#RemovePlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#LosePlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#OnBattleLoadEnd#0;class#RoomLogic#0" expanded="false" />
             <element signature="method#Handler#0;class#RoomLogic#0" expanded="false" />
-            <element signature="e#10811#10812#0" expanded="true" />
-            <element signature="e#10850#10851#0" expanded="true" />
+            <element signature="method#Fire#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#Hurt#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#GenPlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#BattleEnd#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#UseItem#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#ItemGenFundamental#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#OnClientCmd#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#CheckCanLoadBattle#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#CheckCanBeginBattle#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#BeginBattle#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#BeginLoadBattle#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#ClearRoom#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#GenUid#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#GenPositionId#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#SyncAddPlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#SyncRemovePlayer#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#SyncInitItemInfo#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#UpdateRoomInfo#0;class#RoomLogic#0" expanded="false" />
+            <element signature="method#EndSendLogicFrame#0;class#RoomLogic#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Moudle/Room/BattleFrameUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Handler/EventHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/server/Handler/ThriftHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="52" column="86" selection-start-line="52" selection-start-column="86" selection-end-line="52" selection-end-column="86" />
+          <folding />
         </state>
       </provider>
     </entry>

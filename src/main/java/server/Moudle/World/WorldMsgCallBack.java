@@ -53,6 +53,9 @@ public class WorldMsgCallBack implements MessageCallBack
             case MessageIdConstants.CS_UseItem:
                 WorldLogic.GetInstance().OnUseItem(obj);
                 break;
+            case MessageIdConstants.CS_BattleLogicFrame:
+                WorldLogic.GetInstance().OnBattleLogicCmd(obj);
+                break;
         }
     }
 
