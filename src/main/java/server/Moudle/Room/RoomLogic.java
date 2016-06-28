@@ -4,6 +4,7 @@ import org.apache.thrift.TBase;
 import server.Handler.EventHandler;
 import server.Moudle.Item.GenItemManager;
 import server.Moudle.Item.ItemInfo;
+import server.Moudle.World.WorldLogic;
 import server.msg.auto.*;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/3/12.
  */
-public class RoomLogic
+public class RoomLogic implements BattleFrameUpdate.Callback
 {
     private ArrayList<PlayerInfo> m_PlayerInfo = new ArrayList<PlayerInfo>();
     private ArrayList<Integer> m_ClientList = new ArrayList<Integer>();
@@ -280,6 +281,7 @@ public class RoomLogic
         BoradCastMsgToRoom(server);
         m_RoomStatus = RoomStatus.Battle;
 
+        BeginSendLogicFrame();
     }
     private void BeginLoadBattle()
     {
@@ -292,6 +294,8 @@ public class RoomLogic
     {
         m_PlayerClientIdToUid.clear();
         m_ClientList.clear();
+
+        EndSendLogicFrame();
     }
     private int GenUid()
     {
@@ -389,5 +393,27 @@ public class RoomLogic
                 BoradCastMsgToRoom(server);
             }
         }
+    }
+    public void OnClientFrame()
+    {
+
+    }
+    private void BeginSendLogicFrame()
+    {
+        // add to tick list
+        WorldLogic.GetInstance().RegisterToTicklist(this);
+    }
+    private void EndSendLogicFrame()
+    {
+        // remove from tick list
+        WorldLogic.GetInstance().UnregisterFromTicklist(this);
+    }
+    public void Tick()
+    {
+    }
+
+    public void BroadcastCmd(SCBattleLogicFrame msg)
+    {
+        BoradCastMsgToRoom(msg);
     }
 }

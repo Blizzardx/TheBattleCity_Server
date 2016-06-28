@@ -1,13 +1,14 @@
 package server.Moudle;
 
 import server.Moudle.World.WorldHandler;
+import server.Moudle.World.WorldLogic;
 
 /**
  * Created by Administrator on 2016/3/11.
  */
 public class MoudleHandler
 {
-    WorldHandler m_Workdhandler = new WorldHandler();
+    WorldHandler m_WorldHandler = new WorldHandler();
 
     private static MoudleHandler m_Instance;
     public static MoudleHandler GetInstance()
@@ -24,6 +25,11 @@ public class MoudleHandler
     }
     public void RegisterEvent()
     {
-        m_Workdhandler.RegisterEvent();
+        m_WorldHandler.RegisterEvent();
+    }
+
+    public void Tick()
+    {
+        WorldLogic.GetInstance().Tick();
     }
 }

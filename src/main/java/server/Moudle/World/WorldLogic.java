@@ -29,6 +29,7 @@ public class WorldLogic
 
     private HashMap<String,RoomLogic> m_RoomMap = new HashMap<String, RoomLogic>();
     private HashMap<Integer,RoomLogic> m_ClientRoomMap = new HashMap<Integer, RoomLogic>();
+    private ArrayList<RoomLogic> m_RoomTickList = new ArrayList<RoomLogic>();
 
     // message
     public void OnPing(MessageObject obj)
@@ -276,6 +277,32 @@ public class WorldLogic
         {
             RoomLogic room = m_ClientRoomMap.get(obj.m_iClientId);
             room.UseItem(client);
+        }
+    }
+    public void RegisterToTicklist(RoomLogic room)
+    {
+        if(m_RoomTickList.contains(room))
+        {
+            return;
+        }
+        m_RoomTickList.add(room);
+    }
+    public void UnregisterFromTicklist(RoomLogic room)
+    {
+        for(int i=0;i<m_RoomTickList.size();++i)
+        {
+            if( room == m_RoomTickList.get(i))
+            {
+                m_RoomTickList.remove(i);
+                break;
+            }
+        }
+    }
+    public void Tick()
+    {
+        for(int i=0;i<m_RoomTickList.size();++i)
+        {
+            m_RoomTickList.get(i).Tick();
         }
     }
 }

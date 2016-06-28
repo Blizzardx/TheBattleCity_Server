@@ -20,7 +20,7 @@ public class MessageDispatcher
     private HashMap m_RemovingMessageListener;
     private boolean m_bIsBusy;
     private int m_iBusyMessageId;
-
+    private MessageQueue m_MsgQueue = new MessageQueue();
     private static MessageDispatcher m_Instance;
     public static MessageDispatcher GetInstance()
     {
@@ -34,18 +34,6 @@ public class MessageDispatcher
     {
         m_MessageListener = new HashMap();
         m_RemovingMessageListener = new HashMap();
-    }
-
-    public void SendMessageToClient(TBase MessageBody,ArrayList<Integer> clientIdStore)
-    {
-        for(int i=0;i<clientIdStore.size();++i)
-        {
-            SendMessageToClient(MessageBody,clientIdStore.get(i));
-        }
-    }
-    public void SendMessageToClient(TBase MessageBody,int clientId)
-    {
-        EventHandler.GetInstance().SendMessageToClient(clientId,MessageBody);
     }
     public void RegisterMessage(int messageId,MessageCallBack callBack)
     {
@@ -93,7 +81,7 @@ public class MessageDispatcher
             list.add(callBack);
         }
     }
-    public void BroadCastMessage(MessageObject msgObj)
+    public void AddToMessageQueue(MessageObject msgObj)
     {
         m_bIsBusy = true;
         m_iBusyMessageId = msgObj.m_iMessageId;
@@ -108,9 +96,32 @@ public class MessageDispatcher
         m_bIsBusy = false;
         HandlerRemove();
     }
-    public void BroadCastMessage(int messageId,TBase messageBody,int clientId)
+    public void Tick()
     {
-        BroadCastMessage(new MessageObject(messageId,messageBody,clientId));
+        m_bIsBusy = true;
+        for(int i=0;i<16;++i)
+        {
+            MessageObject obj = m_MsgQueue.Dequeue();
+            if(null == obj)
+            {
+                break;
+            }
+            HandlerMessage(obj);
+        }
+        m_bIsBusy = false;
+        HandlerRemove();
+    }
+    private void HandlerMessage(MessageObject msgObj)
+    {
+        m_iBusyMessageId = msgObj.m_iMessageId;
+        if(m_MessageListener.containsKey(msgObj.m_iMessageId))
+        {
+            ArrayList<MessageCallBack> list = (ArrayList<MessageCallBack>)(m_MessageListener.get(msgObj.m_iMessageId));
+            for(int i=0;i<list.size();++i)
+            {
+                list.get(i).MessageHandler(msgObj);
+            }
+        }
     }
     private void HandlerRemove()
     {

@@ -2,7 +2,6 @@ package server.Handler;
 
 import org.apache.thrift.TBase;
 import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBufferFactory;
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.*;
 import server.Message.MessageDispatcher;
@@ -86,7 +85,7 @@ public class EventHandler extends  SimpleChannelHandler
             message.m_iClientId = incoming.getId();
 
             //broad cast message
-            MessageDispatcher.GetInstance().BroadCastMessage(message);
+            MessageDispatcher.GetInstance().AddToMessageQueue(message);
         }
         catch(Exception exp)
         {
@@ -108,7 +107,7 @@ public class EventHandler extends  SimpleChannelHandler
             message.m_iClientId = incoming.getId();
             message.m_iMessageId = CustomServerMessageId.S_LOSE_CLIENT;
             //broad cast message
-            MessageDispatcher.GetInstance().BroadCastMessage(message);
+            MessageDispatcher.GetInstance().AddToMessageQueue(message);
         }
         System.out.println("channelDisconnected " + " client id " + incoming.getRemoteAddress());
     }
@@ -128,7 +127,7 @@ public class EventHandler extends  SimpleChannelHandler
             message.m_iMessageId = CustomServerMessageId.S_LOSE_CLIENT;
 
             //broad cast message
-            MessageDispatcher.GetInstance().BroadCastMessage(message);
+            MessageDispatcher.GetInstance().AddToMessageQueue(message);
         }
         System.out.println("channelClosed " + " client id " + incoming.getRemoteAddress());
     }

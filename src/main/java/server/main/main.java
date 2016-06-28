@@ -3,11 +3,13 @@ import org.jboss.netty.bootstrap.ServerBootstrap;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.*;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
+import server.Message.MessageDispatcher;
 import server.Moudle.MoudleHandler;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
-
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Administrator on 2016/3/8.
@@ -34,6 +36,13 @@ public class main
                 }
          });
         bootstrap.setOption("tcpNoDelay",true);
-        bootstrap.bind(new InetSocketAddress(8000));
+        bootstrap.bind(new InetSocketAddress(1234));
+
+        while(true)
+        {
+            // tick
+            MessageDispatcher.GetInstance().Tick();
+            MoudleHandler.GetInstance().Tick();
+        }
     }
 }
