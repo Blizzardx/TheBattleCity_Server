@@ -43,7 +43,7 @@ public class RoomLogic implements BattleFrameUpdate.Callback
         m_FrameMgr.Initialize(this,30,2);
 
         // test code
-        BeginSendLogicFrame();
+        //BeginSendLogicFrame();
     }
     public void AddPlayer(int clientid, PlayerInfo player)
     {
