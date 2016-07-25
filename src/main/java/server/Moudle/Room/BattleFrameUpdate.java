@@ -40,18 +40,15 @@ public class BattleFrameUpdate
         {
             if(m_CurrentFrameData.charCommandList.get(i).charId == charId)
             {
-                int tmpSize = msg.commandData.size();
-                for(int j=0;j<tmpSize;++j)
-                {
-                    m_CurrentFrameData.charCommandList.get(i).commandList.add(msg.commandData.get(j));
-                }
+                m_CurrentFrameData.charCommandList.get(i).commandList.add(msg.commandData);
                 return;
             }
         }
         // add new cmd
         BattleCharCommand cmd = new BattleCharCommand();
         cmd.charId = charId;
-        cmd.commandList = new ArrayList<BattleCommandData>(msg.commandData);
+        cmd.commandList = new ArrayList<BattleCommandData>();
+        cmd.commandList.add(msg.commandData);
     }
     public void Tick()
     {
