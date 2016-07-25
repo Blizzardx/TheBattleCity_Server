@@ -27,5 +27,6 @@ public class WorldHandler implements LogicHander
         MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_BattleEnd,m_CallBack);
         MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_ItemGenFundamental,m_CallBack);
         MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_UseItem,m_CallBack);
+        MessageDispatcher.GetInstance().RegisterMessage(MessageIdConstants.CS_BattleLogicFrame,m_CallBack);
     }
 }

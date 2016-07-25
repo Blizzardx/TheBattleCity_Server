@@ -49,6 +49,8 @@ public class BattleFrameUpdate
         cmd.charId = charId;
         cmd.commandList = new ArrayList<BattleCommandData>();
         cmd.commandList.add(msg.commandData);
+        m_CurrentFrameData.charCommandList = new ArrayList<BattleCharCommand>();
+        m_CurrentFrameData.charCommandList.add(cmd);
     }
     public void Tick()
     {
