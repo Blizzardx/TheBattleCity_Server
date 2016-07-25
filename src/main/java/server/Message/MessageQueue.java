@@ -1,5 +1,6 @@
 package server.Message;
 
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -8,7 +9,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class MessageQueue
 {
-    private Queue<MessageObject> m_Queue = new LinkedBlockingQueue();
+    private Queue<MessageObject> m_Queue =new LinkedList<MessageObject>();
 
     public MessageObject Dequeue()
     {
@@ -18,7 +19,7 @@ public class MessageQueue
             {
                 return null;
             }
-            return m_Queue.peek();
+            return m_Queue.remove();
         }
     }
     public void Enqueue(MessageObject msgObj)

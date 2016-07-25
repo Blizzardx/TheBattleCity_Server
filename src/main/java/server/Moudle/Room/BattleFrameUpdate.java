@@ -69,6 +69,11 @@ public class BattleFrameUpdate
     }
     private void DoFrame()
     {
+        if(m_iCurrentDuringFrame >= m_iSyncRate)
+        {
+            m_iCurrentDuringFrame = 0;
+            DoSync();
+        }
         ++m_iFrame;
         BattleFrameData frameData = new BattleFrameData();
         frameData.frameIndex = m_iFrame;
@@ -76,11 +81,6 @@ public class BattleFrameUpdate
         m_FrameDataList.add(frameData);
         m_CurrentFrameData = frameData;
         ++ m_iCurrentDuringFrame;
-        if(m_iCurrentDuringFrame >= m_iSyncRate)
-        {
-            m_iCurrentDuringFrame = 0;
-            DoSync();
-        }
     }
     private void DoSync()
     {
