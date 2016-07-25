@@ -83,18 +83,7 @@ public class MessageDispatcher
     }
     public void AddToMessageQueue(MessageObject msgObj)
     {
-        m_bIsBusy = true;
-        m_iBusyMessageId = msgObj.m_iMessageId;
-        if(m_MessageListener.containsKey(msgObj.m_iMessageId))
-        {
-            ArrayList<MessageCallBack> list = (ArrayList<MessageCallBack>)(m_MessageListener.get(msgObj.m_iMessageId));
-            for(int i=0;i<list.size();++i)
-            {
-                list.get(i).MessageHandler(msgObj);
-            }
-        }
-        m_bIsBusy = false;
-        HandlerRemove();
+        m_MsgQueue.Enqueue(msgObj);
     }
     public void Tick()
     {

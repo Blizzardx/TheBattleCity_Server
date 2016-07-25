@@ -34,7 +34,7 @@ public class WorldMsgCallBack implements MessageCallBack
                 break;
             case MessageIdConstants.CS_FIRE:
                 WorldLogic.GetInstance().OnFire(obj);
-            break;
+                break;
             case MessageIdConstants.CS_HANDLER:
                 WorldLogic.GetInstance().OnHandler(obj);
                 break;
